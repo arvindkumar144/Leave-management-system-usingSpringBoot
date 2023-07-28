@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<style type="text/css">
+body{
+	    background-color: #196fff !important;
+}
+</style>
+</head>
+<body>
+	<section
+		class="banner d-flex justify-content-center align-items-end">
+		<div class="text-white text-center rajshree">
+		
+			<h1>Rajshree Institute Of Management And Technology</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+				Doloribus deserunt sint perspiciatis fugiat impedit velit magnam
+				numquam illo qui natus temporibus aut quas id rem culpa voluptatibus
+				molestiae. Explicabo vero corporis doloremque enim eum temporibus et
+				cum molestiae molestias mollitia sunt laudantium accusamus fugit
+				fugiat modi placeat dolor adipisci blanditiis?</p>
+			<a th:href="@{/signin}" class="btn btn-outline-light"><i
+				class="fa fa-user-circle fa-spin"></i> Login</a>
+		</div>
+
+	</section>
+</body>
+</html>

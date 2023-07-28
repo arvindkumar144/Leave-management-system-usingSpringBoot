@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="student/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<section class="stdhome">
+		<div class="container marginTop">
+		<div th:if="${session.message}">
+				<div class="alert" role="alert"
+					th:classappend="${session.message.type}">
+					<span th:text="${session.message.content}"></span>
+				</div>
+				<div
+					th:text="${@removeMessage.removeVerificationMessageFromSession()}"></div>
+			</div>
+			<div class="container text-center p-3">
+				<h1>Welcome To Rajshree GatePass</h1>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

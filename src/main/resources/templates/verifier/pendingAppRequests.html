@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="verifier/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<section>
+		<div class="container-fluid marginTop">
+			<div th:if="${session.message}">
+				<div class="alert" role="alert"
+					th:classappend="${session.message.type}">
+					<span th:text="${session.message.content}"></span>
+				</div>
+				<div
+					th:text="${@removeMessage.removeVerificationMessageFromSession()}"></div>
+			</div>
+			<h1 class="text-center">All Pending Requests For OTP
+				Verification</h1>
+			<div class="container-fluid">
+				<div class="table-responsive">
+					<table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Phone</th>
+								<th>Course</th>
+								<th>Apply Date</th>
+								<th>Apply Time</th>
+								<th>Application Status</th>
+								<th>Confirm For Out</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="e:${leaveTable}">
+								<td><span th:text="${e.stdId}"></span></td>
+								<td><span th:text="${e.stdName}"></span></td>
+								<td><span th:text="${e.stdEmail}"></span></td>
+								<td><span th:text="${e.stdPhone}"></span></td>
+								<td><span th:text="${e.stdCourse}"></span></td>
+								<td><span th:text="${e.localdate}"></span></td>
+								<td><span th:text="${e.localTime}"></span></td>
+								<td><b th:text="${e.applicationStatus}"></b></td>
+								<td>
+									<!-- <button id="${e.stdId}" type="button" data-toggle="modal"
+										data-target="#staticBackdrop"
+										class="btn btn-success verifybtn">Submit OTP For
+										Verify</button> -->
+									<a th:href="@{'/verifier/VerifyOTP/'+${e.id}+'/'+${e.stdId}}" class="btn btn-success text-white">Verify With OTP</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- Modal -->
+					<!-- <div class="modal fade" id="staticBackdrop" data-backdrop="static"
+						data-keyboard="false" tabindex="-1"
+						aria-labelledby="staticBackdropLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+								<form id="verifyOTP" method="post">
+									<div class="modal-header primaryBg text-white">
+										<h5 class="modal-title" id="staticBackdropLabel">Enter
+											OTP for Verification</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="form-group">
+											<input class="form-control" type="number" name="otp"
+												placeholder="Enter OTP for Verification" />
+										</div>
+									</div>
+									<div class="modal-footer primaryBg text-center">
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-success">Verify</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

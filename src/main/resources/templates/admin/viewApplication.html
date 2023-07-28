@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<section>
+		<div class="container-fluid marginTop">
+			<div th:if="${session.message}">
+				<div class="alert" role="alert"
+					th:classappend="${session.message.type}">
+					<span th:text="${session.message.content}"></span>
+				</div>
+				<div
+					th:text="${@removeMessage.removeVerificationMessageFromSession()}"></div>
+			</div>
+			<h1 class="text-center">View full Application</h1>
+			<div class="container">
+				<div class="card">
+					<div class="card-header text-center">
+						<h1>Name : <b th:text="${leaveTable.stdName}"></b></h1><br>
+						<b>Subject : </b><span th:text="${leaveTable.subject}"></span><br>
+						<b>Content : </b><span th:text="${leaveTable.content}"></span><br>
+					</div>
+					<div class="card-body text-center">
+						<img th:src="@{'/img/'+${leaveTable.applicationImage}}" width="600px" height="800px" alt="" />
+					</div>
+					<div class="card-footer text-center">
+						<a th:href="@{'/admin/confirmApplication/'+${leaveTable.stdId}+'/'+${leaveTable.applicationStatus}}" class="btn btn-success">Confirm</a>
+						<a th:href="@{'/admin/rejectApplication/'+${leaveTable.stdId}+'/'+${leaveTable.applicationStatus}}" class="btn btn-danger">Reject</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

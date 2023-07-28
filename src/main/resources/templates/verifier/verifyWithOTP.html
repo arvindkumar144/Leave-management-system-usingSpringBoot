@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="verifier/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<section>
+
+		<div class="container marginTop">
+			<div th:if="${session.message}">
+				<div class="alert" role="alert"
+					th:classappend="${session.message.type}">
+					<span th:text="${session.message.content}"></span>
+				</div>
+				<div
+					th:text="${@removeMessage.removeVerificationMessageFromSession()}"></div>
+			</div>
+			<h1 class="text-center">Enter the OTP for Verify</h1>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 offset-md-3">
+						<form th:action="@{/verifier/SubmitOTP}" id="verifyOTP" method="post">
+									<div class="modal-header primaryBg text-white">
+										<h5 class="modal-title" id="staticBackdropLabel">Enter
+											OTP for Verification</h5>
+									</div>
+									<div class="modal-body">
+										<div class="form-group">
+										<input type="hidden" name="stdId" th:value="${stdId}"/>
+										<input type="hidden" name="id" th:value="${id}"/>
+											<input class="form-control" type="number" name="otp"
+												placeholder="Enter OTP for Verification" />
+										</div>
+									</div>
+									<div class="modal-footer primaryBg">
+										<div class="container text-center">
+											<button type="submit" class="btn btn-success">Verify</button>
+										</div>
+									</div>
+								</form>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</section>
+</body>
+</html>
+								

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<section>
+		<div class="customMargin container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<form th:action="@{/registerRecord}" th:object="${student}" method="post">
+						<div class="card">
+							<div class="card-header primaryBg text-center text-white">
+								<i class="fa fa-user-plus fa-3x"></i>
+								<h1>Register Here</h1>
+								<div th:if="${session.message}">
+									<div class="alert" role="alert" th:classappend="${session.message.type}">
+										<span th:text="${session.message.content}"></span>
+									</div>
+									<div th:text="${@removeMessage.removeVerificationMessageFromSession()}"></div>
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="form-group">
+									<input required class="form-control" th:value="${student.name}" type="text" name="name"
+										placeholder="Enter Name" />
+								</div>
+								<div class="form-group">
+									<input required  class="form-control" th:value="${student.email}" type="email" name="email"
+										placeholder="Enter Email" />
+								</div>
+								<div class="form-group">
+									<input required  class="form-control" th:value="${student.password}" type="password" name="password"
+										placeholder="Enter Password" />
+								</div>
+								<div class="form-group">
+									<input required class="form-control" th:value="${student.phone}" type="number" name="phone"
+										placeholder="Enter Phone" />
+								</div>
+								<div class="form-group">
+									<input required class="form-control" th:value="${student.course}" type="text" name="course"
+										placeholder="Enter Course" />
+								</div>
+							</div>
+							<div class="card-footer primaryBg">
+								<div class="form-group text-center">
+									<button type="submit" class="btn btn-primary">Submit</button>
+									<button type="reset" class="btn btn-warning">Reset</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

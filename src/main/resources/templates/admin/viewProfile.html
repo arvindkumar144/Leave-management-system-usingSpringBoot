@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<section>
+		<div class="container marginTop">
+			<h1 class="text-center">Welcome, <b th:text="${student.name}"></b></h1>
+			<div class="card">
+				<div class="card-header text-center">
+					<img th:src="@{'/img/'+${student.profilePic}}" alt="" width="150px" height="150px" style="border-radius: 50%;"/>
+				</div>
+				<div class="card-body">
+					<table class="table text-center">
+						<tbody>
+							<tr>
+								<th>Name</th>
+								<td th:text="${student.name}"></td>
+							</tr>
+							<tr>
+								<th>Email</th>
+								<td th:text="${student.email}"></td>
+							</tr>
+							<tr>
+								<th>Phone</th>
+								<td th:text="${student.phone}"></td>
+							</tr>
+							<tr>
+								<th>Course</th>
+								<td th:text="${student.course}"></td>
+							</tr>
+							<tr>
+								<th>Address</th>
+								<td th:text="${student.address}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

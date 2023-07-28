@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<section>
+		<div class="container-fluid marginTop">
+			<div th:if="${session.message}">
+				<div class="alert" role="alert"
+					th:classappend="${session.message.type}">
+					<span th:text="${session.message.content}"></span>
+				</div>
+				<div
+					th:text="${@removeMessage.removeVerificationMessageFromSession()}"></div>
+			</div>
+			<h1 class="text-center">All Pending Requests</h1>
+			<div class="container-fluid">
+				<div class="table-responsive">
+					<table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Phone</th>
+								<th>Course</th>
+								<th>Apply Date</th>
+								<th>Apply Time</th>
+								<th>Application Status</th>
+								<th>Confirm / Reject</th>
+								<th>View Application</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="e:${leaveTable}">
+								<td><span th:text="${e.stdId}"></span></td>
+								<td><span th:text="${e.stdName}"></span></td>
+								<td><span th:text="${e.stdEmail}"></span></td>
+								<td><span th:text="${e.stdPhone}"></span></td>
+								<td><span th:text="${e.stdCourse}"></span></td>
+								<td><span th:text="${e.localdate}"></span></td>
+								<td><span th:text="${e.localTime}"></span></td>
+								<td><b th:text="${e.applicationStatus}"></b></td>
+								<td>
+									<a th:href="@{'/admin/confirmApplication/'+${e.stdId}+'/'+${e.applicationStatus}}" class="btn btn-success">Confirm</a>
+									<a th:href="@{'/admin/rejectApplication/'+${e.stdId}+'/'+${e.applicationStatus}}" class="btn btn-danger">Reject</a>
+								</td>
+								<td><a th:href="@{'/admin/viewApplication/'+${e.stdId}+'/'+${e.applicationStatus}}" class="btn btn-warning">View </a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

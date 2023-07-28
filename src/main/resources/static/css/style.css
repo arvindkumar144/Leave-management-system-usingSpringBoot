@@ -1,0 +1,34 @@
+.primaryBg{
+	background-color: #384b9d !important;
+}
+
+.banner{
+	background:linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url("/img/rajshreeBanner.jpg");
+	height: 100vh;
+	background-color: #114293 !important;
+	background-size: contain !important;
+	background-position: center !important;
+	background-repeat: no-repeat;
+}
+
+.customMargin{
+	margin-top: 100px;
+}
+
+.marginTop{
+	margin-top: 60px;
+}
+
+.rajshree{
+	position: relative;
+	bottom: 70px;
+}
+
+.stdhome{
+	background: url("/img/rajshree.jpeg");
+	height: 91vh;
+	background-color: #114293 !important;
+	background-size: contain !important;
+	background-position: center !important;
+	background-repeat: no-repeat;
+}

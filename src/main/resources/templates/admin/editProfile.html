@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<section>
+		<div class="container marginTop">
+			<h1 class="text-center">Welcome, <b th:text="${student.name}"></b></h1>
+			<div class="card">
+				<div class="card-header text-center">
+					<img th:src="@{'/img/'+${student.profilePic}}" alt="" width="150px" height="150px" style="border-radius: 50%;"/>
+				</div>
+				<div class="card-body">
+					<form th:action="@{/admin/editStudentProfile}" method="post" th:object="${student}" enctype="multipart/form-data">
+						<input type="hidden" th:value="${student.id}" name="id" />
+						<div class="table-responsive">
+							<table class="table text-center">
+								<tbody>
+									<tr>
+										<th>Name</th>
+										<td><input type="text" th:value="${student.name}" name="name" class="form-control"/></td>
+									</tr>
+									<tr>
+										<th>Email</th>
+										<td><input readonly type="text" th:value="${student.email}" name="email" class="form-control"/></td>
+									</tr>
+									<tr>
+										<th>Phone</th>
+										<td><input type="number" th:value="${student.phone}" name="phone" class="form-control"/></td>
+									</tr>
+									<tr>
+										<th>Course</th>
+										<td><input type="text" th:value="${student.course}" name="course" class="form-control"/></td>
+									</tr>
+									<tr>
+										<th>Address</th>
+										<td><input type="text" th:value="${student.address}" name="address" class="form-control"/></td>
+									</tr>
+									<tr>
+										<th>Select New Profile </th>
+										<td><input type="file" name="profile" class="form-control"/></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="form-group text-center">
+							<button type="submit" class="btn btn-primary">Edit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
